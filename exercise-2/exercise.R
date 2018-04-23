@@ -44,15 +44,15 @@ reviews <- flatten(body$results)
 # From the most recent review, store the headline, short summary, and link to
 # the full article, each in their own variables
 recent_headline <- reviews %>% filter(publication_date == max(publication_date)) %>% 
-  pull(headline)
+  select(headline)
 recent_short_summary <- reviews %>% filter(publication_date == max(publication_date)) %>% 
-  pull(summary_short)
+  select(summary_short)
 recent_article_link <- reviews %>% filter(publication_date == max(publication_date)) %>% 
-  pull(link.url)
+  select(link.url)
 
 # Create a list of the three pieces of information from above. 
 # Print out the list.
-query_list <- list("headline" = recent_headline, 
-                   "short_summary" = recent_short_summary, 
-                   "article link" = recent_article_link)
+query_list <- list(recent_headline, 
+                   recent_short_summary, 
+                   recent_article_link)
 query_list
